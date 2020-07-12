@@ -37,7 +37,7 @@ def seq_count(seq):
     Calculate the number of bases in the sequence
     """
     result = {'A': seq_count_base(seq, 'A'), 'T': seq_count_base(seq, 'T'),
-           'C': seq_count_base(seq, 'C'), 'G': seq_count_base(seq, 'G')}
+              'C': seq_count_base(seq, 'C'), 'G': seq_count_base(seq, 'G')}
     return result
 
 
@@ -46,3 +46,16 @@ def seq_reverse(seq):
     Return the reverse sequence
     """
     return seq[::-1]
+
+
+def seq_complement(seq):
+    """
+    Return the complement sequence
+    """
+    # -- Dictionary of complement bases
+    base = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+    result = ""
+    for i in seq:
+        result += base[i]
+
+    return result
