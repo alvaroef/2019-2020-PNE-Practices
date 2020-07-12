@@ -30,3 +30,12 @@ def seq_count_base(seq, base):
     Counting the individual bases on the sequence
     """
     return seq.count(base)
+
+
+def seq_count(seq):
+    """
+    Calculate the number of bases in the sequence
+    """
+    result = {'A': seq_count_base(seq, 'A'), 'T': seq_count_base(seq, 'T'),
+           'C': seq_count_base(seq, 'C'), 'G': seq_count_base(seq, 'G')}
+    return result
