@@ -19,3 +19,7 @@ def seq_read_fasta(file):
 
     # -- Return the body as a string
     return "".join(body)
+
+
+def seq_len(seq):
+    return len(seq)
