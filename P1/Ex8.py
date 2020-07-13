@@ -9,4 +9,3 @@ for i, j in enumerate([s_1, s_2, s_3]):
     print(f' Bases: {j.count()}')
     print(f'Reverse: {j.reverse()}')
     print(f' Comp: {j.complement()}')
-    
