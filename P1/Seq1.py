@@ -37,6 +37,9 @@ class Seq:
             return 0
         return len(self.strbases)
 
+    def count_base(self, base):
+        return self.strbases.count(base)
+
 
 class Gene(Seq):
 
