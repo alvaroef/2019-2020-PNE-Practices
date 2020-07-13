@@ -6,3 +6,6 @@ class Client:
     @staticmethod
     def ping():
         print('OK!')
+
+    def __str__(self):
+        return f"Connection to SERVER at {self.ip}, PORT: {self.port}"
