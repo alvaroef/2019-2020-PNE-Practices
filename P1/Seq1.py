@@ -1,3 +1,5 @@
+from pathlib import Path
+
 class Seq:
 
     def __init__(self, strbases = 'NULL'):
@@ -60,6 +62,12 @@ class Seq:
             result += base_comp[i]
         return result
 
+    def read_fasta(self, file_path):
+
+        file = Path(file_path).read_text()
+        body = file.split('\n')[1:]
+        self.strbases = ''.join(body)
+        return self
 
 class Gene(Seq):
 
