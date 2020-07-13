@@ -33,6 +33,8 @@ class Seq:
         return True
 
     def len(self):
+        if self.strbases in ['NULL', 'ERROR']:
+            return 0
         return len(self.strbases)
 
 
