@@ -1,8 +1,5 @@
 from Client0 import Client
 
-PRACTICE = 2
-from Client0 import Client
-
 
 ip = "127.0.0.1"
 port = 8080
