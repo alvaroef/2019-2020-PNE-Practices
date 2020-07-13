@@ -51,6 +51,15 @@ class Seq:
         else:
             return self.strbases[::-1]
 
+    def complement(self):
+        if self.strbases in ['NULL', 'ERROR']:
+            return self.strbases
+        base_comp = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+        result = ''
+        for i in self.strbases:
+            result += base_comp[i]
+        return result
+
 
 class Gene(Seq):
 
