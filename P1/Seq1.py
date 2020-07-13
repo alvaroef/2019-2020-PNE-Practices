@@ -40,6 +40,11 @@ class Seq:
     def count_base(self, base):
         return self.strbases.count(base)
 
+    def count(self):
+        result = {'A': self.count_base('A'), 'T': self.count_base('T'),
+                  'C': self.count_base('C'), 'G': self.count_base('G')}
+        return result
+
 
 class Gene(Seq):
 
