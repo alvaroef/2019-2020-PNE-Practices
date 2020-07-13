@@ -45,6 +45,12 @@ class Seq:
                   'C': self.count_base('C'), 'G': self.count_base('G')}
         return result
 
+    def reverse(self):
+        if self.strbases in ['NULL', 'ERROR']:
+            return self.strbases
+        else:
+            return self.strbases[::-1]
+
 
 class Gene(Seq):
 
