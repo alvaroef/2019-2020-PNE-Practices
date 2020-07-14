@@ -13,6 +13,8 @@ def get_resource(path):
 
     if path == "/info/A":
         resp = Path("A.html").read_text()
+    elif path == "/info/C":
+        resp = Path("C.html").read_text()
 
     return resp
 
@@ -34,7 +36,7 @@ def process_client(s):
     termcolor.cprint(req_line, "green")
 
     # -- Process the request line
-    words = req_line.split(' ')
+    words = req_line.split('')
 
     # -- Get the method and path
     method = words[0]
