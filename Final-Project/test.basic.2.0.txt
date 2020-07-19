@@ -305,3 +305,20 @@ Check if your specie is in our database</a><br><br>
 <a href="/"> Main page </a> <p></p>
 </body></html>
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+---> Error html:
+
+* Input:
+
+http://127.0.0.1:8099/asdf
+
+* Output:
+<html lang="en" dir="ltr"><head>
+<meta charset="utf-8">
+<title>ERROR</title>
+</head>
+<body style="background-color: red;">
+<h1>ERROR</h1>
+<p>Resource not available</p>
+<a href="/">Main page</a>
+</body></html>
