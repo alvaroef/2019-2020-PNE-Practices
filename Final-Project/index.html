@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Main page - Basic</title>
+  </head>
+  <body style="background-color:rgb(255,204,153)">
+    <h1 style="color: rgb(102, 0, 102); ">Browsing Human and Vertebrates genome</h1>
+
+    <b><p style="color:rgb(102,0,102);">BASIC LEVEL</p></b>
+
+    <hr>
+    <form action="listSpecies" method="get">
+      1) List of species in the genome database
+      <br>
+      Select limit:
+      <input type="text" name="Limit">
+      <br>
+      <br>
+      <input type="submit" value="SEND" style="color:rgb(21,105,150); text-decoration: none;
+        padding: 8px;
+        font-weight: 600;
+        font-size: 10px;
+        color: #CC00CC;
+        background-color: #66CC00;
+        border-radius: 10px;
+        border: 2px solid #0016b0">
+    <br>
+    </form>
+
+    <hr>
+    <form action="karyotype" method="get">
+      2) Information about the karyotypes
+      <br>
+      Select the specie:
+      <input type="text" name="Specie">
+      <br>
+          <br>
+      <input type="submit" value="SEND" style="color:rgb(21,105,150); text-decoration: none;
+        padding: 8px;
+        font-weight: 600;
+        font-size: 10px;
+        color: #CC00CC;
+        background-color: #66CC00;
+        border-radius: 10px;
+        border: 2px solid #0016b0">
+    <br>
+    </form>
+
+    <hr>
+  <form action="chromosomeLength" method="get">
+      3) Chromosome Length
+      <br>
+      Select the specie:
+      <input type="text" name="Specie">
+      <br>
+      Select the chromosome:
+      <input type="text" name="Chromosome">
+      <br>
+      <br>
+      <input type="submit" value="SEND" style="color:rgb(21,105,150); text-decoration: none;
+        padding: 8px;
+        font-weight: 600;
+        font-size: 10px;
+        color: #CC00CC;
+        background-color: #66CC00;
+        border-radius: 10px;
+        border: 2px solid #0016b0">
+      <br>
+    </form>
+  </body>
+
+</html>
