@@ -101,3 +101,114 @@ http://127.0.0.1:8099/listSpecies?
 <a href="/">Main page</a>
 </body></html>
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+---> Karyotype (input: human)
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8099/karyotype?Specie=human
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title> Karyotype </title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<h2 style="color:rgb(102, 0, 102);">
+The names of the human chromosomes are:</h2> <p> - 1 </p><p> - 2 </p><p> - 3 </p><p> - 4 </p><p> - 5 </p><p> - 6 </p>
+<p> - 7 </p><p> - 8 </p><p> - 9 </p><p> - 10 </p><p> - 11 </p><p> - 12 </p><p> - 13 </p><p> - 14 </p><p> - 15 </p>
+<p> - 16 </p><p> - 17 </p><p> - 18 </p><p> - 19 </p><p> - 20 </p><p> - 21 </p><p> - 22 </p><p> - X </p><p> - Y </p>
+<p> - MT </p>
+<a href="/">Main page </a>
+</body></html>
+
+---> Karyotype (input: cat)
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8099/karyotype?Specie=cat
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title> Karyotype </title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<h2 style="color:rgb(102, 0, 102);">
+The names of the cat chromosomes are:</h2> <p> - A1 </p><p> - A2 </p><p> - A3 </p><p> - B1 </p><p> - B2 </p>
+<p> - B3 </p><p> - B4 </p><p> - C1 </p><p> - C2 </p><p> - D1 </p><p> - D2 </p><p> - D3 </p><p> - D4 </p><p> - E1 </p>
+<p> - E2 </p><p> - E3 </p><p> - F1 </p><p> - F2 </p><p> - X </p><p> - MT </p>
+<a href="/">Main page </a>
+</body></html>
+
+---> Karyotype (input: mouse)
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8099/karyotype?Specie=mouse
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title> Karyotype </title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<h2 style="color:rgb(102, 0, 102);">
+The names of the mouse chromosomes are:</h2> <p> - 1 </p><p> - 2 </p><p> - 3 </p><p> - 4 </p><p> - 5 </p><p> - 6 </p>
+<p> - 7 </p><p> - 8 </p><p> - 9 </p><p> - 10 </p><p> - 11 </p><p> - 12 </p><p> - 13 </p><p> - 14 </p><p> - 15 </p>
+<p> - 16 </p><p> - 17 </p><p> - 18 </p><p> - 19 </p><p> - X </p><p> - Y </p><p> - MT </p>
+<a href="/">Main page </a>
+</body></html>
+
+---> Karyotype (input: dog, non-valid input)
+
+* TEST 4:
+
+* Input:
+
+http://127.0.0.1:8099/karyotype?Specie=dog
+
+* Output:
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>Error</title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<h1>ERROR</h1>
+<h2>'dog' not found</h2>
+<p> Selected specie's dog karyotype information is not available </p>
+<p><a href="/karyotype?Specie=dog">
+Check if your specie is in our database</a><br><br>
+</p><p> Introduce a specie in the database to find its karyotype </p>
+<a href="/"> Main page </a> <p></p>
+</body></html>
+
+---> Karyotype (input: asdf, non-valid input nor an anima5)
+
+* TEST 5:
+
+* Input:
+
+http://127.0.0.1:8099/karyotype?Specie=asdf
+
+* Output:
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>Error</title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<h1>ERROR</h1>
+<h2>'dog' not found</h2>
+<p> Selected specie's dog karyotype information is not available </p>
+<p><a href="/karyotype?Specie=dog">
+Check if your specie is in our database</a><br><br>
+</p><p> Introduce a specie in the database to find its karyotype </p>
+<a href="/"> Main page </a> <p></p>
+</body></html>
+
