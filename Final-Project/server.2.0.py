@@ -91,6 +91,97 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         for specie in limit_list:  # iteration to print all the species in the limit list
                             contents += f"""<p> - {specie} </p>"""
                 contents += f"""<a href="/">Main page</a></body></html>"""  # link to return to main page
+
+            # Karyotype
+            elif first_argument == '/karyotype':  # part3, returns the names of the cromosomes of the chosen species
+
+                contents = f"""<!DOCTYPE html>
+                                            <html lang = "en">
+                                            <head>
+                                                <meta charset = "utf-8">
+                                                 <title> Karyotype </title >
+                                            </head >
+                                            <body  style="background-color:rgb(255,204,153)">
+                                            """
+
+                try:
+                    # Get the arguments after the ?
+                    get_value = arguments[1]
+
+                    # We get the seq index and name
+                    specie = get_value.split('?')  # splits by the ?
+                    specie_method, name_sp = specie[0].split("=")  # splits by the =
+
+                    full_name = ""  # we initialize the variable to keep doble or more word names
+                    for n in range(0, len(name_sp)):
+                        if name_sp[n] == "+":
+                            full_name += "%20"
+                        else:
+                            full_name += name_sp[n]  # in case its a one word species
+                    if full_name == 'human' or full_name == 'cat' or full_name == 'mouse':
+                        endpoint = 'info/assembly/'
+                        params = '?content-type=application/json'
+                        request = endpoint + full_name + params
+
+                        try:
+                            conn.request("GET", request)  # connection request
+
+                        except ConnectionRefusedError:  # exception for connection error
+                            print("ERROR! Cannot connect to the Server")
+                            exit()
+
+                        # Main program of karyotype
+                        response = conn.getresponse()
+
+                        # -- Read the response's body
+                        body = response.read().decode("utf-8")  # utf_8 to admit all characters in the response
+                        body = json.loads(body)  # loads is a json method to read json response
+                        karyotype_data = body["karyotype"]  # list to save all the names
+
+                        full_name = full_name.replace("%20", " ")
+                        contents += f"""<h2 style="color:rgb(102, 0, 102);"> 
+                                                The names of the {full_name} chromosomes are:</h2> """
+
+                        for chromosome in karyotype_data:  # iteration to print all the chromosomes names
+                            contents += f"""<p> - {chromosome} </p>"""
+
+                        contents += f"""<a href="/">Main page </a></body></html>"""  # link to return to main page
+                    else:
+                        contents = f"""
+                            <!DOCTYPE html> 
+                            <html lang="en"> 
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <title>Error</title>
+                                </head>
+                                <body style="background-color:rgb(255,204,153)">
+                                    <h1>ERROR</h1>
+                                    <h2>'{full_name}' not found</h2>
+                                    <p> Selected specie's {full_name} karyotype information is not available </p>
+                                    <p><a href="/karyotype?Specie={full_name}">
+                                    Check if your specie is in our database</a><br><br>
+                                    <p> Introduce a specie in the database to find its karyotype </p>
+                                    <a href="/"> Main page </a> </p>
+                                    </body>
+                                    </html>"""
+
+                except KeyError:  # exception in case no value or an incorrect format value is inputed
+                    contents = f"""
+                                    <!DOCTYPE html> 
+                                    <html lang="en"> 
+                                        <head>
+                                            <meta charset="UTF-8">
+                                            <title>Error</title>
+                                        </head>
+                                        <body style="background-color:rgb(255,204,153)">
+                                            <h1>ERROR</h1>
+                                            <p> Selected specie's karyotype information is not available </p>
+                                            <p><a href="/karyotype?Specie={full_name}">
+                                            Check if your specie is in our database</a><br><br>
+                                            <p> Introduce a specie in the database to find its karyotype </p>
+                                            <a href="/"> Main page </a> </p>
+                                            </body>
+                                            </html>"""
             if 'json=1' in req_line:
                 self.send_header('Content-Type', 'application/json')
                 self.send_header('Content-Length', len(str.encode(contents)))
