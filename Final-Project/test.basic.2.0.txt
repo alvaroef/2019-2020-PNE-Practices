@@ -1,0 +1,103 @@
+Test report example
+====================
+---> Index (index.html)
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8099/
+
+* Output:
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Main page - Basic</title>
+  </head>
+  <body style="background-color:rgb(255,204,153)">
+    <h1 style="color: rgb(102, 0, 102); ">Browsing Human and Vertebrates genome</h1>
+
+    <b><p style="color:rgb(102,0,102);">BASIC LEVEL</p></b>
+
+    <hr>
+    <form action="listSpecies" method="get">
+      1) List of species in the genome database (First 20)
+      <br>
+      <input type="submit" value="SEND" style="color:rgb(21,105,150); text-decoration: none;
+        padding: 8px;
+        font-weight: 600;
+        font-size: 10px;
+        color: #CC00CC;
+        background-color: #66CC00;
+        border-radius: 10px;
+        border: 2px solid #0016b0">
+    <br>
+    </form>
+
+    <hr>
+    <form action="karyotype" method="get">
+      2) Information about the karyotypes
+      <br>
+      Select the specie (Only human, mouse or cat):
+      <input type="text" name="Specie">
+      <br>
+          <br>
+      <input type="submit" value="SEND" style="color:rgb(21,105,150); text-decoration: none;
+        padding: 8px;
+        font-weight: 600;
+        font-size: 10px;
+        color: #CC00CC;
+        background-color: #66CC00;
+        border-radius: 10px;
+        border: 2px solid #0016b0">
+    <br>
+    </form>
+
+    <hr>
+  <form action="chromosomeLength" method="get">
+      3) Chromosome Length
+      <br>
+      Select the specie:
+      <input type="text" name="Specie">
+      <br>
+      Select the chromosome:
+      <input type="text" name="Chromosome">
+      <br>
+      <br>
+      <input type="submit" value="SEND" style="color:rgb(21,105,150); text-decoration: none;
+        padding: 8px;
+        font-weight: 600;
+        font-size: 10px;
+        color: #CC00CC;
+        background-color: #66CC00;
+        border-radius: 10px;
+        border: 2px solid #0016b0">
+      <br>
+    </form>
+</body></html>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+---> List Species
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8099/listSpecies?
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>List of species in the browser</title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<h1 style="color:rgb(102, 0, 102);"> List of species in the genome database</h1>
+<p style="color:rgb(102, 0, 102);"><b>The total number of species in ensembl is: 286</b></p>
+<p>The species are: </p><p> - Leopard </p><p> - Brazilian guinea pig </p><p> - Alpine marmot </p>
+<p> - Golden-collared manakin </p><p> - Common carp hebao red </p><p> - Tropical clawed frog </p>
+<p> - Small tree finch </p><p> - Spoon-billed sandpiper </p><p> - Huchen </p><p> - Chinese softshell turtle </p>
+<p> - Yellowtail amberjack </p><p> - Fugu </p><p> - Mouse FVB/NJ </p><p> - C.intestinalis </p>
+<p> - Helmeted guineafowl </p><p> - Hagfish </p><p> - Pig - Hampshire </p><p> - Tasmanian devil </p><p> - Tuatara </p>
+<p> - Alpaca </p>
+<a href="/">Main page</a>
+</body></html>
+
