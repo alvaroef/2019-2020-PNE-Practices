@@ -33,6 +33,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         arguments = (req_line[1]).split("?")
 
         first_argument = arguments[0]  # sets the first argument
+
         contents = Path('Error.html').read_text()  # no argument --> error form
         self.send_response(404)
 
@@ -41,6 +42,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             # Index
             if first_argument == "/":  # return an HTML page with the forms for accessing to all the previous services
+
                 contents = Path('index.html').read_text()  # contents displayed in index.html
                 self.send_response(200)
             # ListSpecies
@@ -85,12 +87,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     limit_list.append(element["display_name"])  # appends each element to the list
 
                     if len(limit_list) == 20:
-                        contents += f"""<p>The  first 20 species are: </p>"""
+                        contents += f"""<p>The species are: </p>"""
                         for specie in limit_list:  # iteration to print all the species in the limit list
                             contents += f"""<p> - {specie} </p>"""
                 contents += f"""<a href="/">Main page</a></body></html>"""  # link to return to main page
-
-            # Define the content-type header:
             if 'json=1' in req_line:
                 self.send_header('Content-Type', 'application/json')
                 self.send_header('Content-Length', len(str.encode(contents)))
