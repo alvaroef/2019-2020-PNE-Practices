@@ -26,6 +26,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         in the HTTP protocol request"""
 
         # Print the request line
+        global full_name
         termcolor.cprint(self.requestline, 'green')  # green request line
 
         req_line = self.requestline.split(' ')  # splits the request line (by the spaces)
@@ -182,6 +183,105 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                             <a href="/"> Main page </a> </p>
                                             </body>
                                             </html>"""
+            # Chromosome length
+
+            elif first_argument == "/chromosomeLength":
+
+                try:
+                    # We get the arguments that go after the ?, it will get us the SPECIE&CHROMOSOME
+                    pair = arguments[1]
+
+                    # We have to separate both the species name and the chromo index inputed
+                    pairs = pair.split('&')  # splits by the &
+                    specie_name, specie = pairs[0].split("=")  # having pair[0] as the species name
+
+                    chromosome_index, chromosome = pairs[1].split("=")  # having pair[1] as the species name
+
+                    # html form for when no chromosome index is inputed
+                    contents = f"""<!DOCTYPE html>
+                                        <html lang = "en">
+                                        <head>
+                                         <meta charset = "utf-8" >
+                                         <title>ERROR</title >
+                                        </head>
+                                        <body  style="background-color:rgb(255,204,153)">
+                                        <p>ERROR INVALID VALUE</p>
+                                        <p> Introduce a valid integer value for chromosome of this species</p>
+                                        <a href="/">Main page</a></body></html>"""
+
+                    full_name = ""  # we initialize the variable to keep doble or more word names
+                    for n in range(0, len(specie)):
+                        if specie[n] == "+":
+                            full_name += "%20"
+                        else:
+                            full_name += specie[n]  # in case its a one word species
+                    if full_name == 'human' or full_name == 'cat' or full_name == 'mouse':
+                        endpoint = 'info/assembly/'
+                        params = '?content-type=application/json'
+                        request = endpoint + full_name + params
+
+                        try:
+                            conn.request("GET", request)  # connection request
+                        except ConnectionRefusedError:  # exception for connection error
+                            print("ERROR! Cannot connect to the Server")
+                            exit()
+
+                        # Main program
+                        response = conn.getresponse()
+
+                        # -- Read the response's body
+                        body = response.read().decode('utf-8')  # utf_8 to admit all characters in the response
+                        body = json.loads(body)  # loads is a json method to read json response
+
+                        chromosome_data = body["top_level_region"]  # list to save all the chromosomes
+                        specie = specie.replace("+", " ")
+
+                        for chromosomes in chromosome_data:
+                            if chromosomes["name"] == str(chromosome):
+                                length = chromosomes["length"]
+                                contents = f"""<!DOCTYPE html>
+                                                <html lang = "en"><head>
+                                                <meta charset = "utf-8" >
+                                                <title> Length Chromosome</title >
+                                                </head ><body  style="background-color:rgb(255,204,153)">
+                                                <h2 style="color:rgb(102, 0, 102);"> 
+                                                The length of the '{chromosome}' {specie} chromosome is: {length}</h2>
+                                                <a href="/"> Main page</a"""
+                    else:
+                        contents = f"""
+                                <!DOCTYPE html> 
+                                <html lang="en"> 
+                                    <head>
+                                        <meta charset="UTF-8">
+                                        <title>Error</title>
+                                    </head>
+                                    <body style="background-color:rgb(255,204,153)">
+                                        <h1>ERROR</h1>
+                                        <h2>'{full_name}' not found</h2>
+                                        <p> Selected specie's {full_name} karyotype information is not available </p>
+                                        <p><a href="/karyotype?Specie={full_name}">
+                                        Check if your specie is in our database</a><br><br>
+                                        <p> Introduce a specie in the database to find its karyotype </p>
+                                        <a href="/"> Main page </a> </p>
+                                        </body>
+                                        </html>"""
+                except KeyError:
+                    contents = f"""<!DOCTYPE html> 
+                                        <html lang="en"> 
+                                            <head>
+                                                <meta charset="UTF-8">
+                                                <title>Error</title>
+                                            </head>
+                                            <body style="background-color:rgb(255,204,153)">
+                                                <h1>ERROR</h1>
+                                                <p> Selected specie's cromosome length information is not available </p>
+                                                <p><a href="/karyotype?Specie={full_name}">
+                                                Check if your specie is in our database</a><br><br>
+                                                <p> Introduce a specie in the database 
+                                                (with a proper chromosome) to find its length information </p>
+                                                <a href="/"> Main page </a> </p>
+                                                </body>
+                                                </html>"""
             if 'json=1' in req_line:
                 self.send_header('Content-Type', 'application/json')
                 self.send_header('Content-Length', len(str.encode(contents)))
