@@ -212,3 +212,96 @@ Check if your specie is in our database</a><br><br>
 <a href="/"> Main page </a> <p></p>
 </body></html>
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+---> Chromosome Length (input: human, X)
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8099/chromosomeLength?Specie=human&Chromosome=X
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title> Length Chromosome</title>
+</head><body style="background-color:rgb(255,204,153)">
+<h2 style="color:rgb(102, 0, 102);">
+The length of the 'X' human chromosome is: 156040895</h2>
+<a href="/"> Main page</a></body></html>
+
+---> Chromosome Length (input: cat, E2)
+
+* TEST 2:
+
+* Input:
+
+http://127.0.0.1:8099/chromosomeLength?Specie=cat&Chromosome=E2
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title> Length Chromosome</title>
+</head><body style="background-color:rgb(255,204,153)">
+<h2 style="color:rgb(102, 0, 102);">
+The length of the 'E2' cat chromosome is: 64340295</h2>
+<a href="/"> Main page</a></body></html>
+
+---> Chromosome Length (input: mouse, 5)
+
+* TEST 3:
+
+* Input:
+
+http://127.0.0.1:8099/chromosomeLength?Specie=mouse&Chromosome=5
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title> Length Chromosome</title>
+</head><body style="background-color:rgb(255,204,153)">
+<h2 style="color:rgb(102, 0, 102);">
+The length of the '5' mouse chromosome is: 151834684</h2>
+<a href="/"> Main page</a></body></html>
+
+---> Chromosome Length (input: human, asdf; correct specie, non-valid chromosome)
+
+* TEST 4:
+
+* Input:
+
+http://127.0.0.1:8099/chromosomeLength?Specie=human&Chromosome=asdf
+
+* Output:
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>ERROR</title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<p>ERROR INVALID VALUE</p>
+<p> Introduce a valid integer value for chromosome of this species</p>
+<a href="/">Main page</a></body></html>
+
+---> Chromosome Length (input: asdf, non-relevant; incorrect specie)
+
+* TEST 5:
+
+* Input:
+
+http://127.0.0.1:8099/chromosomeLength?Specie=asdf&Chromosome=3
+
+* Output:
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>Error</title>
+</head>
+<body style="background-color:rgb(255,204,153)">
+<h1>ERROR</h1>
+<h2>'asdf' not found</h2>
+<p> Selected specie's asdf karyotype information is not available </p>
+<p><a href="/karyotype?Specie=asdf">
+Check if your specie is in our database</a><br><br>
+</p><p> Introduce a specie in the database to find its karyotype </p>
+<a href="/"> Main page </a> <p></p>
+</body></html>
+
